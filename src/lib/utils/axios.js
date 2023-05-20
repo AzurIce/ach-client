@@ -6,6 +6,8 @@ import axios from 'axios'
  * @param {Object} data 请求时携带的数据
  */
 
+const host = "http://mc.azurcraft.top:8888"
+
 const headerJSON = { "Content-Type": "application/json" }
 
 export function postByJson(url, data) {
@@ -14,9 +16,8 @@ export function postByJson(url, data) {
   // if (import.meta.env.DEV) {
   //   url = "http://localhost:8888" + url
   // }
-  url = "http://mc.azurcraft.top:8888" + url
   return new Promise((resolve, reject) => {
-    axios.post(url, JSON.stringify(data), {
+    axios.post(host + url, JSON.stringify(data), {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('ACHToken'),
         "Content-Type": "application/json"
@@ -31,9 +32,8 @@ export function get(url) {
   // if (import.meta.env.DEV) {
   //   url = "http://localhost:8888" + url
   // }
-  url = "http://mc.azurcraft.top:8888" + url
   return new Promise((resolve, reject) => {
-    axios.get(url, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACHToken') } })
+    axios.get(host + url, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem('ACHToken') } })
       .then((res) => { resolve(res) })
       .catch((err) => { reject(err) })
   })
